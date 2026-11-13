@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://b4vwvaepsdgn6"]
+
+[ext_resource type="Script" uid="uid://culctkwp64o1u" path="res://ui/MainMenu.cs" id="1_menu"]
+[ext_resource type="FontFile" uid="uid://c2xs3gjqqowna" path="res://art/VCR_OSD_MONO_1.001.ttf" id="2_0dkrt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t7e0r"]
+load_path = "res://.godot/imported/GameMainMenuBackground.png-4a8aef03c9856431916e528d669484f6.ctex"
+
+[node name="MainMenu" type="Control" unique_id=1]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1463631243]
+modulate = Color(0.3599412, 0.38543624, 0.37240648, 1)
+layout_mode = 0
+offset_right = 3200.0
+offset_bottom = 1800.0
+scale = Vector2(0.36, 0.36)
+texture = SubResource("CompressedTexture2D_t7e0r")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=883345488]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer" unique_id=1760313894]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/VBox" unique_id=221697744]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+theme_override_font_sizes/font_size = 48
+text = "CREATE / JOIN"
+horizontal_alignment = 1
+
+[node name="Separator1" type="HSeparator" parent="CenterContainer/VBox" unique_id=950303923]
+layout_mode = 2
+
+[node name="ServerSection" type="VBoxContainer" parent="CenterContainer/VBox" unique_id=662847284]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ServerLabel" type="Label" parent="CenterContainer/VBox/ServerSection" unique_id=1131979435]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+theme_override_font_sizes/font_size = 14
+text = "Server"
+
+[node name="HostRow" type="HBoxContainer" parent="CenterContainer/VBox/ServerSection" unique_id=1625130321]
+layout_mode = 2
+
+[node name="HostLabel" type="Label" parent="CenterContainer/VBox/ServerSection/HostRow" unique_id=979305538]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+text = "Address:"
+
+[node name="HostInput" type="LineEdit" parent="CenterContainer/VBox/ServerSection/HostRow" unique_id=1161049581]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_0dkrt")
+placeholder_text = "26.205.78.70"
+
+[node name="PortRow" type="HBoxContainer" parent="CenterContainer/VBox/ServerSection" unique_id=443927671]
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="CenterContainer/VBox/ServerSection/PortRow" unique_id=1767024417]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+text = "Port:"
+
+[node name="PortInput" type="LineEdit" parent="CenterContainer/VBox/ServerSection/PortRow" unique_id=1878941566]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_0dkrt")
+placeholder_text = "7777"
+
+[node name="Separator2" type="HSeparator" parent="CenterContainer/VBox" unique_id=1043763615]
+layout_mode = 2
+
+[node name="CreateBtn" type="Button" parent="CenterContainer/VBox" unique_id=1386028806]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0dkrt")
+theme_override_font_sizes/font_size = 18
+text = "Create Room"
+
+[node name="Separator3" type="HSeparator" parent="CenterContainer/VBox" unique_id=1067120713]
+layout_mode = 2
+
+[node name="JoinSection" type="VBoxContainer" parent="CenterContainer/VBox" unique_id=340423712]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="JoinLabel" type="Label" parent="CenterContainer/VBox/JoinSection" unique_id=464475197]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+theme_override_font_sizes/font_size = 14
+text = "Join Room"
+
+[node name="JoinRow" type="HBoxContainer" parent="CenterContainer/VBox/JoinSection" unique_id=1906486795]
+layout_mode = 2
+
+[node name="CodeLabel" type="Label" parent="CenterContainer/VBox/JoinSection/JoinRow" unique_id=32137242]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+text = "Code:"
+
+[node name="JoinCodeInput" type="LineEdit" parent="CenterContainer/VBox/JoinSection/JoinRow" unique_id=1026642508]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_0dkrt")
+placeholder_text = "e.g. A3X9"
+max_length = 4
+
+[node name="JoinBtn" type="Button" parent="CenterContainer/VBox/JoinSection" unique_id=1766657220]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0dkrt")
+theme_override_font_sizes/font_size = 18
+text = "Join Room"
+
+[node name="Separator4" type="HSeparator" parent="CenterContainer/VBox" unique_id=1564247415]
+layout_mode = 2
+
+[node name="LocalBattleBtn" type="Button" parent="CenterContainer/VBox" unique_id=1632796951]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+theme_override_font_sizes/font_size = 22
+text = "Local Battle"
+
+[node name="Separator5" type="HSeparator" parent="CenterContainer/VBox" unique_id=1705989979]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="CenterContainer/VBox" unique_id=728896726]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Separator6" type="HSeparator" parent="CenterContainer/VBox" unique_id=19385923]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="CenterContainer/VBox" unique_id=1496325305]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_0dkrt")
+theme_override_font_sizes/font_size = 18
+text = "Back to Main Menu"

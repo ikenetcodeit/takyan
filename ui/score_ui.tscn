@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://cq28ccxf8bv43"]
+
+[ext_resource type="Script" uid="uid://cpaqumj1n3qn" path="res://ui/ScoreUI.cs" id="1_score"]
+[ext_resource type="FontFile" uid="uid://c2xs3gjqqowna" path="res://art/VCR_OSD_MONO_1.001.ttf" id="2_idm35"]
+
+[node name="ScoreUI" type="Control" unique_id=765998640]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_score")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=94182409]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 20
+
+[node name="HBox" type="HBoxContainer" parent="Margin" unique_id=849351502]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="P1Label" type="Label" parent="Margin/HBox" unique_id=1807117251]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 24
+text = "P1"
+
+[node name="VBox" type="VBoxContainer" parent="Margin/HBox" unique_id=379514687]
+layout_mode = 2
+
+[node name="RoundLabel" type="Label" parent="Margin/HBox/VBox" unique_id=1414946560]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 18
+text = "Round 1"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Margin/HBox/VBox" unique_id=1457454069]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 48
+text = "0 - 0"
+horizontal_alignment = 1
+
+[node name="P2Label" type="Label" parent="Margin/HBox" unique_id=2122229156]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 24
+text = "P2"
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1087948134]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center" unique_id=1390884819]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PlayAgainBtn" type="Button" parent="Center/VBox" unique_id=344707721]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 32
+text = "REMATCH?"
+
+[node name="ReturnBtn" type="Button" parent="Center/VBox" unique_id=991710330]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 32
+text = "Return to Menu"
+
+[node name="assigningPoints" type="Label" parent="." unique_id=1273419509]
+layout_mode = 0
+offset_top = 181.0
+offset_right = 1152.0
+offset_bottom = 217.0
+offset_transform_enabled = true
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1778694484]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 123.0
+offset_bottom = -441.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="playerServingIndicator" type="Label" parent="MarginContainer" unique_id=236033431]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="tossingCountdown" type="Label" parent="MarginContainer" unique_id=1628732696]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="rematchText" type="Label" parent="MarginContainer" unique_id=1859563297]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2026337182]
+layout_mode = 2
+
+[node name="matchEnded Indicator" type="Label" parent="MarginContainer/VBoxContainer" unique_id=499241509]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="winnerText" type="Label" parent="MarginContainer/VBoxContainer" unique_id=985823353]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer" unique_id=1281389230]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="roundEndingIndicator" type="Label" parent="MarginContainer/VBoxContainer2" unique_id=2070823426]
+layout_mode = 2
+size_flags_vertical = 1
+offset_transform_enabled = true
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_idm35")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1

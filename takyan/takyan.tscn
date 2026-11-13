@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://fkfjwehf6vky"]
+
+[ext_resource type="Script" uid="uid://dkgrqpybmqcdg" path="res://takyan/Takyan.cs" id="1_65cot"]
+[ext_resource type="Texture2D" uid="uid://cjor7yeytgiar" path="res://art/Takyan/takyan.png" id="2_bs5j5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hjb8m"]
+rough = true
+bounce = 0.2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65cot"]
+atlas = ExtResource("2_bs5j5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bs5j5"]
+atlas = ExtResource("2_bs5j5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uatdf"]
+atlas = ExtResource("2_bs5j5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj60m"]
+atlas = ExtResource("2_bs5j5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfxu0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65cot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bs5j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uatdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj60m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfxu0"]
+size = Vector2(78.723404, 95.744675)
+
+[node name="Takyan" type="RigidBody2D" groups=["takyan"] unique_id=1624492187]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_hjb8m")
+gravity_scale = 1.5
+linear_damp = 1.0
+angular_damp = 2.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_65cot")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1595328678]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_lfxu0")
+autoplay = "default"
+frame_progress = 0.6081344
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1247671041]
+position = Vector2(0.50000143, 0.5000002)
+scale = Vector2(0.47, 0.47)
+shape = SubResource("RectangleShape2D_lfxu0")
+
+[node name="TrailParticles" type="CPUParticles2D" parent="." unique_id=1987654321]
+show_behind_parent = true
+scale = Vector2(0.995, 0.995)
+amount = 10
+speed_scale = 5.0
+fixed_fps = 23
+emission_shape = 1
+emission_sphere_radius = 15.0
+gravity = Vector2(0, 40)
+scale_amount_min = 0.0
+scale_amount_max = 15.0
+color = Color(1, 1, 1, 0.8)
+anim_offset_max = 1.0
