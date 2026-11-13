@@ -4,7 +4,7 @@ Central technical improvement backlog. Generated from a full repository audit on
 Keep this file current: tick tasks when done, add new findings as tasks, and never mark unverified work complete.
 
 **How the audit was done:** every `.cs`, `.tscn`, `.tres`, `.import`, and config file was read. `dotnet build` was run on a scratch copy of the sources (it passed with 0 warnings and 0 errors). `gitleaks` scanned all 49 commits plus the working tree and found nothing.
-**What was not done:** Godot is not installed on the audit machine, so the game was **not run, played, profiled, or exported**. "Confirmed" findings below are confirmed by reading the code, not by reproducing them at runtime. Every P0/P1 task should start by reproducing the bug in the editor.
+**Runtime verification (2026-11-13, Godot 4.7.2 .NET):** a follow-up session ran headless smoke tests with a 1 dedicated server + up to 4 client processes, driven by an external GDScript harness that presses the real UI buttons; see the "Runtime result" column in §2. The game was **not profiled or exported**, and visual/feel aspects were not assessed.
 
 ---
 
@@ -81,6 +81,11 @@ This is the security face of the architectural defect TK-001.
 
 **SEC-08: Hardcoded addresses.** `26.205.78.70` (a Radmin VPN range address) is the default server address. It is not a credential, but it ships every build pointed at someone's private host, and the README says the default is `127.0.0.1`. `StartServer.bat` hardcodes `C:\Users\chris\...`. Fix: TK-030.
 
+**Runtime results for the security findings:**
+- **SEC-01: reproduced.** P2 sent `CmdSendKickAction(99999, …)` on P1's node during the toss countdown. The server logged `Applied kick: force=99999` and `Player 1 kicked the Takyan`.
+- **SEC-03: reproduced.** `SceneMultiplayer.server_relay` is `true` by default. P2's broadcast `RpcTeleport` on `Player1` moved the host's own local player to x=123.
+- **SEC-04: reproduced.** A third client idling in its own lobby was moved into `world.tscn` when another room's round restarted.
+
 **Not applicable:** authentication and authorization (no accounts), save-file tampering (no persistence), economy or currency (none), third-party SDKs or analytics (none). Secrets: `gitleaks` found no leaks in 49 commits or the working tree.
 
 ### Critical gameplay and reliability bugs
@@ -95,6 +100,18 @@ This is the security face of the architectural defect TK-001.
 | BUG-06 | The Local Battle REMATCH button does nothing. | `CmdRequestRematch` returns when `!_net.IsServer` (`game/GameManager.cs:187`), and offline mode is never the server. | TK-004 |
 | BUG-07 | In Local Battle, Dash triggers both players. | `Input.IsPhysicalKeyPressed(Key.Alt)` is hardcoded and not an InputMap action (`player/PlayerOne.cs:278`). | TK-005 |
 | BUG-08 | Running from the editor makes every instance try to host. | `project.godot:35` sets `run/main_run_args="--server"`, and `NetworkManager._Ready` reads it. This contradicts README steps 3 and 4. It only "works" when a dedicated server already holds port 7777. | TK-006 |
+| BUG-09 | Clients keep stale score and serve phase from the previous match. | When match 2 started, clients showed the old 0-1 score and `ServeManager.Phase` was still `Tossing` from match 1. | TK-002 |
+| BUG-10 | Local Battle logs an RPC error on every point. | `ERROR: Trying to call an RPC while no multiplayer peer is active` once per point, because `ServerBeginPlayRound` calls `Rpc(...)` unconditionally (`game/GameManager.cs:99`) and there is no peer in Local Battle. | TK-004 |
+| BUG-11 | Error spam on every online round restart. | The server logs `Node not found: "world/Player1"` / `Invalid packet received` while clients reload `world.tscn`, because unreliable state RPCs arrive for nodes that no longer exist. Harmless but noisy; pause state sends during reload. | TK-024 |
+
+**Runtime results for the bugs** (headless harness, Godot 4.7.2):
+- **BUG-01: reproduced.** Room 2's match start reset the server's game state. Room 1's next drop was not scored and room 1 froze at 0-1. Room 2 never began serving.
+- **BUG-02: reproduced.** In the second match, the server logged `Fresh match. Waiting for players to ready up...`, no client ever sent ready, and the toss countdown never started.
+- **BUG-03: reproduced.** The host received `opponent disconnected`, stayed in the world, and the server kept playing and awarded P1 a point against the absent player.
+- **BUG-05: reproduced.** Local match 2 started at 4-5, and its first point ended it at 5-5 with "P1 wins".
+- **BUG-06: reproduced.** After Local REMATCH the score stayed 4-5.
+- **BUG-07: reproduced.** One Alt press gave both players velocity 1500.
+- **BUG-08: not run.** It is a configuration fact, not exercised.
 
 ---
 
